@@ -1,10 +1,15 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { MulterModule } from '@nestjs/platform-express';
+import { FileController } from './files/files.controller';
+import { FileService } from './files/files.service';
 
 @Module({
-  imports: [],
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [
+    MulterModule.register({
+      dest: './uploads', // specify the destination directory for uploaded files
+    }),
+  ],
+  controllers: [FileController],
+  providers: [FileService],
 })
 export class AppModule {}
